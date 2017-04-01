@@ -1,10 +1,29 @@
 div.container {
   height: 100%;
-  padding: 10px;
   box-sizing: border-box;
+  text-align: center;
 }
 
 md-grid-list {
-	height: calc(100vh - 64px - 70px);
-	width: 100;
+  height: calc(100vh - 64px - 49px);
+  width: 100%;
+}
+
+.go-binary {
+  font-size: 4rem;
+}
+
+i {
+  margin: 0 10px;
+}
+
+i:hover {
+  color: white;
+  cursor: pointer;
+}
+
+pre {
+  background: beige;
+  padding: 20px;
+  border-radius: 10px;
 }
