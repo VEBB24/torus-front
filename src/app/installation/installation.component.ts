@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./installation.component.css']
 })
 export class InstallationComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit() {

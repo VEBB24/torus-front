@@ -1,0 +1,10 @@
+div.container {
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+md-grid-list {
+	height: calc(100vh - 64px - 70px);
+	width: 100;
+}
