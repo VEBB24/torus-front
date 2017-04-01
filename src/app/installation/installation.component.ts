@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-installation',
@@ -6,9 +7,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./installation.component.css']
 })
 export class InstallationComponent implements OnInit {
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  constructor(private auth: AuthService) { }
+  ngOnInit() { }
 }

@@ -1,23 +1,23 @@
 div.container {
-  height: 100%;
   box-sizing: border-box;
   text-align: center;
 }
 
 md-grid-list {
-  height: calc(100vh - 64px - 49px);
+  height: calc(100vh - 49px);
   width: 100%;
 }
 
 .go-binary {
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
-i {
-  margin: 0 10px;
+i.fa {
+  margin: 0 20px;
+  font-size: 6rem;
 }
 
-i:hover {
+i.fa:hover {
   color: white;
   cursor: pointer;
 }

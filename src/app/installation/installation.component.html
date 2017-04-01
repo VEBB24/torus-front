@@ -1,14 +1,15 @@
 <div class="container">
   <md-grid-list cols="3" rowHeight="fit">
-    <md-grid-tile colspan="1" [style.background]="'lightgreen'">
+    <md-grid-tile colspan="1" style="background: #03A9F4">
       <div class="go-binary">
-        <div>Go Binary</div>
+        <div>Download<br><i>torus-upload</i></div>
+        <br>
         <div><i class="fa fa-windows" aria-hidden="true"></i><i class="fa fa-apple" aria-hidden="true"></i><i class="fa fa-linux" aria-hidden="true"></i></div>
       </div>
     </md-grid-tile>
-    <md-grid-tile colspan="2" [style.background]="'lightblue'">
+    <md-grid-tile colspan="2" style="background:#FF5252;">
       <div>
-        <pre>./torus-upload image.png</pre>
+        <pre>./torus-upload {{auth.sessionId}} image.png</pre>
       </div>
     </md-grid-tile>
   </md-grid-list>

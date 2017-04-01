@@ -1,5 +1,4 @@
 div.container {
-  height: 100%;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -7,6 +6,6 @@ div.container {
 }
 
 md-progress-circle {
-	height: calc(100vh - 64px - 49px);
+	height: calc(100vh - 49px);
 	width: 100%;
 }
