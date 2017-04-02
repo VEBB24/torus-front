@@ -1,10 +1,21 @@
 <div class="container">
-  <md-grid-list cols="3" rowHeight="fit">
-    <md-grid-tile colspan="2" [style.background]="'lightblue'">Map</md-grid-tile>
+  <md-grid-list cols="4" rowHeight="fit">
+    <md-grid-tile colspan="3" [style.background]="'lightblue'">
+      <div id="leaflet"></div>
+    </md-grid-tile>
     <md-grid-tile colspan="1" [style.background]="'lightgreen'">
       <div>
-        <md-slide-toggle>Slide me</md-slide-toggle>
-        <md-slider thumb-label="true" min="1" max="10" step="0.5" value="1.5"></md-slider>
+        <form (ngSubmit)="getAlgo()">
+          <md-slide-toggle [(ngModel)]="algos.algo1" name="algo">Algo 1</md-slide-toggle>
+          <md-slide-toggle [(ngModel)]="algos.algo2" name="algo">Algo 2</md-slide-toggle>
+          <md-slide-toggle [(ngModel)]="algos.algo3" name="algo">Algo 3</md-slide-toggle>
+          <md-slide-toggle [(ngModel)]="algos.algo4" name="algo">Algo 4</md-slide-toggle>
+          <md-slide-toggle [(ngModel)]="algos.algo5" name="algo">Algo 5</md-slide-toggle>
+          <md-slide-toggle [(ngModel)]="algos.algo6" name="algo">Algo 6</md-slide-toggle>
+          <md-slide-toggle [(ngModel)]="algos.algo7" name="algo">Algo 7</md-slide-toggle>
+          <md-slide-toggle [(ngModel)]="algos.algo8" name="algo">Algo 8</md-slide-toggle>
+          <button md-raised-button type="submit">Save</button>
+        </form>
       </div>
     </md-grid-tile>
   </md-grid-list>

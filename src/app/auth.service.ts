@@ -7,42 +7,52 @@ export class AuthService {
 
   constructor(private http: Http) { }
   isLoggedIn = false;
-  sessionId = "";
-  redirectUrl: string;
+  username = ""
+  sessionId = ""
   login(username, password) {
-    let checkLogin = this.http.post("/api/auth", {}).subscribe()
-    
-// https://torus-45:jyqgjfawTPj5PrTDPEUI@arel.eisti.fr/oauth/token", { "grant_type": "password", "username": "viauthomas", "password": "lalala", "scope": "read", "format": "json" })
+    localStorage.setItem("username", username)
+    this.username = username
+    return this.http.post("/api/auth", { "username": username, "password": password }).map((x: Response) => x.json())
+  }
 
-
-    let a = { "access_token": "2db98953-97ae-4d3b-b058-02670282a7a7", "token_type": "bearer", "refresh_token": "756c00aa-782c-4711-8ba0-81b2c95baea7", "expires_in": 601531, "scope": "read" }
-    return Observable.of(a).delay(1000).do((val: any) => {
-      if (val.error) {
-        console.log(val.error_description)
-      } else {
-        this.isLoggedIn = true
-        this.sessionId = "4565dzadazdaz4989"
-      }
-    })
-    /*if (!this.isLoggedIn) {
-      this.isLoggedIn = true;
+  public setSession(access_token) {
+    let valid_token = this.checkToken(access_token)
+    if (valid_token) {
+      this.isLoggedIn = true
+      this.sessionId = access_token
+      localStorage.setItem("access_token", access_token)
+      console.debug("AuthService#setSession You are logged in.")
     } else {
-      console.error("AuthService#login You are already logged.");
+      console.error("AuthService#setSession Invalid access_token.")
+      localStorage.setItem("access_token", "")
     }
-    return this.isLoggedIn;*/
+  }
+
+  checkSession() : boolean {
+    let access_token = localStorage.getItem("access_token")
+    if (access_token != null && access_token != "") {
+      this.setSession(access_token)
+      return true
+    } else return false
+  }
+
+  private checkToken(access_token) : boolean {
+    return true
   }
 
   logout() {
     if (this.isLoggedIn) {
-      this.isLoggedIn = false;
-    } else {
-      console.error("AuthService#login You are already logged.");
-    }
-    return this.isLoggedIn;
+      this.isLoggedIn = false
+      this.sessionId = ""
+      localStorage.setItem("access_token", "")
+      localStorage.setItem("username", "")
+      console.debug("AuthService#logout You are logged out.")
+    } else console.error("AuthService#logout You are already logged out.")
+    return this.isLoggedIn
   }
 
   isLogged() {
-    return this.isLoggedIn;
+    return this.isLoggedIn
   }
 
 }

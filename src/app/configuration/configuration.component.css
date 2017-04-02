@@ -6,3 +6,8 @@ md-grid-list {
 	height: calc(100vh - 49px);
 	width: 100%;
 }
+
+#leaflet {
+	width: 75vw;
+	height: calc(100vh - 49px);
+}

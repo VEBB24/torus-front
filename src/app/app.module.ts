@@ -3,9 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { RouterModule, Routes } from '@angular/router';
 import 'hammerjs';
+import 'leaflet';
+import 'leaflet-draw';
 
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
@@ -44,7 +46,7 @@ const routes: Routes = [
     FormsModule,
     HttpModule,
     MaterialModule,
-    NoopAnimationsModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [AuthGuard, AuthService],

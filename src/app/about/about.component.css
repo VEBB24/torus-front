@@ -1,0 +1,9 @@
+div.container {
+  box-sizing: border-box;
+  text-align: center;
+}
+
+md-grid-list {
+  height: calc(100vh - 49px);
+  width: 100%;
+}

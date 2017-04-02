@@ -7,6 +7,6 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./installation.component.css']
 })
 export class InstallationComponent implements OnInit {
-  constructor(private auth: AuthService) { }
+  constructor(public auth: AuthService) { }
   ngOnInit() { }
 }

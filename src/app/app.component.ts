@@ -8,5 +8,7 @@ import { AuthService } from './auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(public router: Router, private auth: AuthService) { }
+  constructor(public router: Router, public auth: AuthService) { 
+    this.auth.checkSession()
+  }
 }
