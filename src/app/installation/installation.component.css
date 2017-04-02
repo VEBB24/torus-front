@@ -1,0 +1,29 @@
+div.container {
+  box-sizing: border-box;
+  text-align: center;
+}
+
+md-grid-list {
+  height: calc(100vh - 49px);
+  width: 100%;
+}
+
+.go-binary {
+  font-size: 3rem;
+}
+
+i.fa {
+  margin: 0 20px;
+  font-size: 6rem;
+}
+
+i.fa:hover {
+  color: white;
+  cursor: pointer;
+}
+
+pre {
+  background: beige;
+  padding: 20px;
+  border-radius: 10px;
+}
