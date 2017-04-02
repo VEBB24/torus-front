@@ -9,13 +9,12 @@ export class AuthService {
   isLoggedIn = false;
   sessionId = "";
   redirectUrl: string;
-  login() {
-    /*
-    let a = this.http.post("https://torus-45:jyqgjfawTPj5PrTDPEUI@arel.eisti.fr/oauth/token",
-      { "grant_type": "password", "username": "viauthomas", "password": "lalala", "scope": "read", "format": "json" })
-    a.subscribe(x => console.log(x))
-    */
-    // let a = {"error":"invalid_grant","error_description":"Invalid user."}
+  login(username, password) {
+    let checkLogin = this.http.post("/api/auth", {}).subscribe()
+    
+// https://torus-45:jyqgjfawTPj5PrTDPEUI@arel.eisti.fr/oauth/token", { "grant_type": "password", "username": "viauthomas", "password": "lalala", "scope": "read", "format": "json" })
+
+
     let a = { "access_token": "2db98953-97ae-4d3b-b058-02670282a7a7", "token_type": "bearer", "refresh_token": "756c00aa-782c-4711-8ba0-81b2c95baea7", "expires_in": 601531, "scope": "read" }
     return Observable.of(a).delay(1000).do((val: any) => {
       if (val.error) {
