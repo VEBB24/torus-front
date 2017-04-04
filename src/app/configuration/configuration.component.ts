@@ -4,8 +4,8 @@ import { AuthService } from '../auth.service';
 
 export class Algo {
   constructor(
-    public name="",
-    public params={}
+    public name = "",
+    public params = {}
   ) { }
 }
 
@@ -20,7 +20,7 @@ export class ConfigurationComponent implements OnInit {
   algos: Array<Algo> = []
   map
   editableLayers = new L.FeatureGroup()
-  test= true
+  test = true
   constructor(public auth: AuthService, public router: Router) { }
 
   ngOnInit() {
@@ -72,8 +72,11 @@ export class ConfigurationComponent implements OnInit {
   }
 
   getParams(alg) {
-    switch(alg) {
-      case 1: return [{"type":"checkbox", "label":"Supervised", "value":false}, {"type":"slider", "label":"Variant", "value":0}];
+    switch (alg) {
+      case 1: return [
+        { "type": "checkbox", "label": "Supervised", "value": false },
+        { "type": "slider", "label": "Variant", "value": 0 }
+      ];
       case 2: return [];
       case 3: return [];
       case 4: return [];

@@ -1,0 +1,17 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+    
+    # Chemin vers le repertoire 'dist'
+	root /home/tom/Documents/Projects/VEBB24/torus-frontend/dist;
+    index index.html
+	server_name _;
+    
+    location /api/ {
+        proxy_pass http://127.0.0.1:12345/;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.html =403;
+    }
+}
