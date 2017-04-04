@@ -1,5 +1,25 @@
 # TorusFront
 
+## Docker nginx
+
+To launch the docker nginx, you will need to create a custom network : 
+
+```
+docker network create nginx
+```
+
+If you're running behind a VPN, you might need to add a custom subnet : 
+
+```
+docker network create --subnet=178.28.0.0/16 nginx
+```
+
+Then, you will be able to start the container : 
+
+```
+docker-compose up -d
+```
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
 ## Development server
