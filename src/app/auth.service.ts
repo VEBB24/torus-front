@@ -4,7 +4,6 @@ import { Http, Response } from '@angular/http';
 
 @Injectable()
 export class AuthService {
-
   constructor(private http: Http) { }
   isLoggedIn = false;
   username = ""

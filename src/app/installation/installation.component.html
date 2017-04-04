@@ -20,13 +20,19 @@
             <th>Last Modified</th>
             <th></th>
           </tr>
-          <tr *ngFor="let file of listFiles">
-            <td (click)="deleteFile(file.name)"><i style="font-size: 3rem;" class="material-icons">clear</i></td>
+          <tr *ngFor="let file of listFiles" md-no-ink>
+            <td><div class="squaredFour"><input type="checkbox" [(ngModel)]="checkedList[file.name]" value="None" [id]="'cb'+file.name" name="check"/><label [for]="'cb'+file.name"></label></div></td>
             <td class="name">{{ file.name }}</td>
             <td class="size">{{ file.size | byte }}</td>
             <td class="lastm">{{ file.last_modified }}</td>
-            <td><button (click)="goConfig(file.name)" md-raised-button>Process</button></td>
+            <td><i (click)="renameFile(file.name)" style="font-size: 3rem;" class="material-icons">edit</i><i (click)="deleteFile(file.name)" style="font-size: 3rem;" class="material-icons">clear</i></td>
           </tr>
+          <tr>
+            <td><button (click)="goConfig()" md-raised-button>Compute</button></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </table>
       </div>
     </md-grid-tile>

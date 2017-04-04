@@ -11,6 +11,7 @@ import 'leaflet-draw';
 
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
+import { EventSourceService } from './event-source.service';
 
 import { AppComponent } from './app.component';
 import { InstallationComponent } from './installation/installation.component';
@@ -51,7 +52,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthGuard, AuthService],
+  providers: [AuthGuard, AuthService, EventSourceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
