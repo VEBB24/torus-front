@@ -3,7 +3,7 @@ server {
 	listen [::]:80 default_server;
     
     # Chemin vers le repertoire 'dist'
-	root /home/tom/Documents/Projects/VEBB24/torus-frontend/dist;
+	root /usr/share/nginx/html/;
     index index.html
 	server_name _;
     
