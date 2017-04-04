@@ -1,16 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
-export class Algos {
+export class Algo {
   constructor(
-    public algo1: boolean = false,
-    public algo2: boolean = false,
-    public algo3: boolean = false,
-    public algo4: boolean = false,
-    public algo5: boolean = false,
-    public algo6: boolean = false,
-    public algo7: boolean = false,
-    public algo8: boolean = false
+    public name="",
+    public params={}
   ) { }
 }
 
@@ -22,10 +17,11 @@ declare let L: any;
   styleUrls: ['./configuration.component.css']
 })
 export class ConfigurationComponent implements OnInit {
-  algos = new Algos()
+  algos: Array<Algo> = []
   map
   editableLayers = new L.FeatureGroup()
-  constructor(public auth: AuthService) { }
+  test= true
+  constructor(public auth: AuthService, public router: Router) { }
 
   ngOnInit() {
     const ACCESS_TOKEN = 'pk.eyJ1Ijoic3VpY2lkZWJveSIsImEiOiJjajExOXN4bzYwMDNoMnlwZ3BqNXhqcDZ5In0.zpOkiYje8z-hO4WZoyqnZA';
@@ -55,7 +51,7 @@ export class ConfigurationComponent implements OnInit {
     });
   }
 
-  getAlgo() {
+  getAlgos() {
     console.debug("ConfigurationComponent#getAlgo ok")
     console.log(this.algos)
     this.editableLayers.eachLayer((layer) => {
@@ -63,6 +59,29 @@ export class ConfigurationComponent implements OnInit {
       let sw = layer._bounds._southWest
       console.log(ne, sw)
     })
-    console.log(this.auth.username, this.auth.sessionId)
+    console.log(this.auth.sessionId)
+    this.router.navigate(["progress"])
+  }
+
+  addAlgo(alg) {
+    this.algos.push(new Algo(alg, this.getParams(alg)))
+  }
+
+  delAlgo(alg) {
+    this.algos.splice(alg, 1)
+  }
+
+  getParams(alg) {
+    switch(alg) {
+      case 1: return [{"type":"checkbox", "label":"Supervised", "value":false}, {"type":"slider", "label":"Variant", "value":0}];
+      case 2: return [];
+      case 3: return [];
+      case 4: return [];
+      case 5: return [];
+      case 6: return [];
+      case 7: return [];
+      case 8: return [];
+      case 9: return [];
+    }
   }
 }

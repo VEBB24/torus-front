@@ -4,18 +4,25 @@
       <div id="leaflet"></div>
     </md-grid-tile>
     <md-grid-tile colspan="1" [style.background]="'lightgreen'">
-      <div>
-        <form (ngSubmit)="getAlgo()">
-          <md-slide-toggle [(ngModel)]="algos.algo1" name="algo">Algo 1</md-slide-toggle>
-          <md-slide-toggle [(ngModel)]="algos.algo2" name="algo">Algo 2</md-slide-toggle>
-          <md-slide-toggle [(ngModel)]="algos.algo3" name="algo">Algo 3</md-slide-toggle>
-          <md-slide-toggle [(ngModel)]="algos.algo4" name="algo">Algo 4</md-slide-toggle>
-          <md-slide-toggle [(ngModel)]="algos.algo5" name="algo">Algo 5</md-slide-toggle>
-          <md-slide-toggle [(ngModel)]="algos.algo6" name="algo">Algo 6</md-slide-toggle>
-          <md-slide-toggle [(ngModel)]="algos.algo7" name="algo">Algo 7</md-slide-toggle>
-          <md-slide-toggle [(ngModel)]="algos.algo8" name="algo">Algo 8</md-slide-toggle>
-          <button md-raised-button type="submit">Save</button>
-        </form>
+      <div class="config">
+        <div class="algos">
+          <button md-raised-button *ngFor="let i of [1,2,3,4,5,6,7,8]" (click)="addAlgo(i)">Algo {{i}}</button>
+        </div>
+        <div class="disp">
+          <div class="algo" *ngFor="let algo of algos; let i = index;">
+            <i (click)="delAlgo(i)" class="material-icons">clear</i>
+            <span>Algo n°{{algo.name}}</span>
+            <div [ngSwitch]="algo.name">
+              <div *ngSwitchCase="'1'">
+                <md-slide-toggle [(ngModel)]="algo.params[0].value">{{algo.params[0].label}}</md-slide-toggle>
+                <span class="mat-slide-toggle-content"><md-slider thumbLabel [(ngModel)]="algo.params[1].value"></md-slider>{{algo.params[1].label}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-button">
+          <button md-raised-button (click)="getAlgos()">Compute</button>
+        </div>
       </div>
     </md-grid-tile>
   </md-grid-list>

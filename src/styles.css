@@ -7,3 +7,5 @@ html, body {
 	height: 100%;
 	font-family: "Roboto", "Open Sans";
 }
+
+html {font-size:0.7vw}

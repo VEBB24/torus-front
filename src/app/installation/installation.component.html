@@ -1,15 +1,33 @@
 <div class="container">
-  <md-grid-list cols="3" rowHeight="fit">
-    <md-grid-tile colspan="1" style="background: #03A9F4">
+  <md-grid-list cols="5" rowHeight="fit">
+    <md-grid-tile colspan="2" style="background: #03A9F4">
       <div class="go-binary">
         <div>Download<br><i>torus-upload</i></div>
         <br>
-        <div><i class="fa fa-windows" aria-hidden="true"></i><i class="fa fa-apple" aria-hidden="true"></i><i class="fa fa-linux" aria-hidden="true"></i></div>
+        <div><i class="fa fa-windows" aria-hidden="true"></i><i class="fa fa-apple" aria-hidden="true"></i><i class="fa fa-linux"
+            aria-hidden="true"></i></div>
+        <br>
+        <pre>./torus-upload -token {{auth.sessionId}} /path/to/image.png</pre>
       </div>
     </md-grid-tile>
-    <md-grid-tile colspan="2" style="background:#FF5252;">
-      <div>
-        <pre>./torus-upload -token {{auth.sessionId}} /path/to/image.png</pre>
+    <md-grid-tile colspan="3" style="background:#FF5252;">
+      <div class="container-table">
+        <table cellspacing="0" cellpadding="10">
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Last Modified</th>
+            <th></th>
+          </tr>
+          <tr *ngFor="let file of listFiles">
+            <td (click)="deleteFile(file.name)"><i style="font-size: 3rem;" class="material-icons">clear</i></td>
+            <td class="name">{{ file.name }}</td>
+            <td class="size">{{ file.size | byte }}</td>
+            <td class="lastm">{{ file.last_modified }}</td>
+            <td><button (click)="goConfig(file.name)" md-raised-button>Process</button></td>
+          </tr>
+        </table>
       </div>
     </md-grid-tile>
   </md-grid-list>

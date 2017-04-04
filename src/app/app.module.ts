@@ -19,6 +19,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AboutComponent } from './about/about.component';
+import { BytePipe } from './byte.pipe';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -39,7 +40,8 @@ const routes: Routes = [
     ProgressComponent,
     LoginComponent,
     PageNotFoundComponent,
-    AboutComponent
+    AboutComponent,
+    BytePipe
   ],
   imports: [
     BrowserModule,

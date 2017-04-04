@@ -1,5 +1,5 @@
 <nav md-tab-nav-bar md-stretch-tabs md-selected="currentTab">
-  <div class="mat-tab-link"><strong>Torus Front</strong></div>
+  <div class="mat-tab-link"><strong>Torus</strong></div>
   <a [hidden]="auth.isLoggedIn" md-tab-link routerLink="/login" routerLinkActive="active" #logi="routerLinkActive" [active]="logi.isActive">Login</a>
   <a [hidden]="!auth.isLoggedIn" md-tab-link routerLink="/logout" routerLinkActive="active" #logo="routerLinkActive" [active]="logo.isActive">Logout</a>
   <a [hidden]="!auth.isLoggedIn" md-tab-link routerLink="/installation" routerLinkActive="active" #inst="routerLinkActive" [active]="inst.isActive">Installation</a>
