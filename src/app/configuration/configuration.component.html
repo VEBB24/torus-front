@@ -1,27 +1,35 @@
 <div class="container">
   <md-grid-list cols="4" rowHeight="fit">
-    <md-grid-tile colspan="3" [style.background]="'lightblue'">
+    <md-grid-tile colspan="3">
       <div id="leaflet"></div>
     </md-grid-tile>
-    <md-grid-tile colspan="1" [style.background]="'lightgreen'">
+    <md-grid-tile colspan="1">
       <div class="config">
-        <div class="algos">
-          <button md-raised-button *ngFor="let i of [1,2,3,4,5,6,7,8]" (click)="addAlgo(i)">Algo {{i}}</button>
-        </div>
+        <md-card class="algos">
+          <button md-raised-button color="primary" *ngFor="let algo of algosList" (click)="addAlgo(algo)">{{algo.name}}</button>
+        </md-card>
         <div class="disp">
-          <div class="algo" *ngFor="let algo of algos; let i = index;">
+          <md-card class="algo" *ngFor="let algo of algos; let i = index;">
             <i (click)="delAlgo(i)" class="material-icons">clear</i>
-            <span>Algo n°{{algo.name}}</span>
-            <div [ngSwitch]="algo.name">
-              <div *ngSwitchCase="'1'">
-                <md-slide-toggle [(ngModel)]="algo.params[0].value">{{algo.params[0].label}}</md-slide-toggle>
-                <span class="mat-slide-toggle-content"><md-slider thumbLabel [(ngModel)]="algo.params[1].value"></md-slider>{{algo.params[1].label}}</span>
+            <span>{{algo.name}}</span>
+            <div [ngSwitch]="algo.name" style="text-align: justify">
+              <div *ngFor="let param of algo.params" style="display: inline-block; vertical-align: middle; margin: 2px">
+                <span [ngSwitch]="param.type">
+                  <md-slide-toggle *ngSwitchCase="'checkbox'" [(ngModel)]="param.value">{{param.label}}</md-slide-toggle>
+                  <span *ngSwitchCase="'slider'" class="mat-slide-toggle-content">
+                    <md-slider thumbLabel tickInterval="1" [(ngModel)]="param.value" [min]="param.min" [max]="param.max" [step]="param.step"></md-slider>
+                    {{param.label}}
+                  </span>
+                  <md-input-container *ngSwitchCase="'text'">
+                    <input mdInput [placeholder]="param.label" [(ngModel)]="param.value">
+                  </md-input-container>
+                </span>
               </div>
             </div>
-          </div>
+          </md-card>
         </div>
         <div class="footer-button">
-          <button md-raised-button (click)="getAlgos()">Compute</button>
+          <button md-raised-button color="primary" (click)="getAlgos()">Compute</button>
         </div>
       </div>
     </md-grid-tile>

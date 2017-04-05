@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { AlgosList } from '../../../conf/algos';
 
 export class Algo {
   constructor(
     public name = "",
-    public params = {}
+    public params = []
   ) { }
 }
 
@@ -17,6 +18,7 @@ declare let L: any;
   styleUrls: ['./configuration.component.css']
 })
 export class ConfigurationComponent implements OnInit {
+  algosList = AlgosList
   algos: Array<Algo> = []
   map
   editableLayers = new L.FeatureGroup()
@@ -49,6 +51,11 @@ export class ConfigurationComponent implements OnInit {
       this.editableLayers.eachLayer((layer) => this.editableLayers.removeLayer(layer))
       this.editableLayers.addLayer(e.layer);
     });
+
+  }
+
+  cloneObject(obj) {
+    return JSON.parse(JSON.stringify(obj))
   }
 
   getAlgos() {
@@ -63,8 +70,8 @@ export class ConfigurationComponent implements OnInit {
     this.router.navigate(["progress"])
   }
 
-  addAlgo(alg) {
-    this.algos.push(new Algo(alg, this.getParams(alg)))
+  addAlgo(alg: Algo) {
+    this.algos.push(this.cloneObject(alg))
   }
 
   delAlgo(alg) {

@@ -14,6 +14,7 @@ md-grid-list {
 
 .config {
   height: 100%;
+  width: 100%;
   display: flex;
   flex-flow: column;
   box-sizing: border-box;
@@ -29,7 +30,7 @@ md-grid-list {
   overflow: auto;
   box-sizing: border-box;
   padding-bottom: 20px;
-  border-bottom: solid 1px white;
+  z-index: 2;
 }
 
 .algos button {
@@ -41,9 +42,18 @@ md-grid-list {
   width: 100%;
   height: 100%;
   padding: 20px;
+  padding-bottom: 0;
   overflow: auto;
   flex: 1 1 auto;
   box-sizing: border-box;
+}
+
+.algo:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.algo:last-child {
+  margin-bottom: 10px;
 }
 
 .algo>i {
@@ -52,7 +62,7 @@ md-grid-list {
 }
 
 .algo>i:hover {
-  color: white;
+  color: #673ab7;
   cursor: pointer;
 }
 

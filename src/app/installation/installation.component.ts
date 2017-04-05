@@ -15,7 +15,7 @@ export class InstallationComponent implements OnInit, OnDestroy {
   checkedList = {}
   interval
   constructor(public auth: AuthService, public http: Http, public router: Router, public eventSource: EventSourceService) { }
-  
+
   ngOnInit() {
     this.getListFiles()
     this.interval = setInterval(() => this.getListFiles(), 1000)
@@ -32,11 +32,11 @@ export class InstallationComponent implements OnInit, OnDestroy {
 
   renameFile(name) {
     let rename = prompt(`Rename file '${name}'`)
-    this.http.put(`/api/hdfs/${this.auth.sessionId}`, { "previous": name, "next": rename }).subscribe(() => this.getListFiles())
-  }
-
-  onChange(x) {
-    console.log(x)
+    this.http.put(`/api/hdfs/${this.auth.sessionId}`, { "previous": name, "next": rename }).subscribe(() => {
+      this.checkedList[rename] = this.checkedList[name]
+      delete this.checkedList[name]
+      this.getListFiles()
+    })
   }
 
   deepEqual(x, y) {
@@ -50,15 +50,24 @@ export class InstallationComponent implements OnInit, OnDestroy {
 
   getListFiles() {
     this.http.get(`/api/hdfs/${this.auth.sessionId}`).map((x: Response) => x.json()).subscribe((x) => {
+      x = x.sort((n1, n2) => {
+        if (n1.last_modified > n2.last_modified) return 1;
+        if (n1.last_modified < n2.last_modified) return -1;
+        return 0;
+      })
       if (this.listFiles.length == 0 || !this.deepEqual(x, this.listFiles)) {
-        this.listFiles = x.sort((n1, n2) => {
-          if (n1.last_modified > n2.last_modified) return 1;
-          if (n1.last_modified < n2.last_modified) return -1;
-          return 0;
-        })
+        this.listFiles = x
         x.forEach(y => this.checkedList[y.name] = this.checkedList[y.name] || false)
       }
     })
+  }
+
+  noChecked() {
+    let t = false
+    for (let i in this.checkedList) {
+      t = t || this.checkedList[i]
+    }
+    return !t
   }
 
   goConfig() {
