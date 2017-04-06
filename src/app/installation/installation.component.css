@@ -12,6 +12,10 @@ md-grid-list {
   font-size: 3rem;
 }
 
+a {
+  color: black;
+}
+
 i.fa {
   margin: 0 2vw;
   font-size: 6rem;
